@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+    id 'groovy'
+    id 'application'
+    id 'info.solidsoft.pitest' version '1.6.0'
+//    id "net.ltgt.errorprone" version "2.0.2"
+}
+
+group 'com.ldts23.l08gr04'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+application {
+    mainClass.set('com.ldts23.l08gr04.Game')
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    testImplementation 'org.mockito:mockito-core:3.7.7'
+    testImplementation 'net.jqwik:jqwik:1.5.1'
+//    errorprone('com.google.errorprone:error_prone_core:2.16')
+
+    implementation group: 'com.googlecode.lanterna', name: 'lanterna', version: '3.1.1'
+}
+test {
+    useJUnitPlatform {
+        includeEngines('junit-jupiter', 'jqwik')
+    }
+}
+
+pitest {
+    targetClasses = ['com.ldts23.l08gr04.*']
+    junit5PluginVersion = '0.12'
+}

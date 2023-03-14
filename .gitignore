@@ -1,0 +1,7 @@
+.idea/
+.gradle/
+out/
+build
+*.iml
+.jqwik-database
+.DS_Store
